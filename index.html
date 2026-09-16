@@ -1,4 +1,6 @@
 <title>Казка — кав'ярня-кондитерська, Полтава</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Кав'ярня-кондитерська «Казка» на Соборності, 46 у Полтаві. Дизайн-торти, бенто та десерти на замовлення.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +31,7 @@
   a{color:inherit}
   .wrap{max-width:1180px;margin:0 auto;padding-inline:22px}
   section{padding-block:clamp(52px,7vw,92px)}
+  section[id]{scroll-margin-top:74px}   /* щоб липка шапка не з'їдала початок секції */
   :is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2.5px solid var(--sage-deep);outline-offset:3px;border-radius:4px}
 
   /* ── плашка демо ── */
@@ -49,7 +52,21 @@
   .bar nav a{font-size:14.5px;text-decoration:none;color:var(--ink-soft)}
   .bar nav a:hover{color:var(--sage-deep)}
   .bar .tel{font-size:14.5px;text-decoration:none;white-space:nowrap}
+  .bar .call{display:none;width:42px;height:42px;flex:none;border:1.5px solid var(--line);border-radius:50%;
+             align-items:center;justify-content:center;color:var(--sage-deep)}
+  .bar .call svg{width:19px;height:19px;display:block}
+  .bar .call:hover{border-color:var(--sage-deep);background:var(--sage-wash)}
   @media (max-width:880px){ .bar nav a.hide-sm{display:none} }
+  @media (max-width:560px){
+    .bar-in{gap:10px;padding-block:9px}
+    .brand img{width:38px;height:38px}
+    .brand span{font-size:18px}
+    .brand small{display:none}
+    .bar nav{gap:9px}
+    .bar .tel{display:none}
+    .bar .call{display:inline-flex}
+    .bar .btn-sm{padding:10px 15px;font-size:14px}
+  }
 
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:15px;
        font-weight:500;padding:12px 22px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;
@@ -89,6 +106,12 @@
     .hero-cta{flex-direction:column;align-items:stretch}
     .hero-cta .btn{width:100%}
     .demo-note .long{display:none}
+    .hero-photo figcaption{position:static;transform:none;white-space:normal;margin-top:12px;
+                           text-align:center;font-size:14px;box-shadow:none;background:var(--paper-2);
+                           display:block;border-radius:10px;padding:9px 14px}
+    .hero{padding-bottom:36px}
+    .facts{gap:6px 18px;font-size:14px}
+    .f .hint,.drop{font-size:14px}
   }
 
   /* ── смуга «як замовити» ── */
@@ -166,6 +189,11 @@
   .cafe .pair img:first-child{aspect-ratio:4/5}
   .cafe .pair img:last-child{aspect-ratio:3/5}
   @media (max-width:820px){ .cafe-grid{grid-template-columns:1fr} }
+  @media (max-width:620px){
+    .cafe .pair{grid-template-columns:1fr}
+    .cafe .pair img:first-child{aspect-ratio:4/3}
+    .cafe .pair img:last-child{aspect-ratio:16/10}
+  }
 
   /* ── відгуки ── */
   .says h2{font-size:clamp(25px,3vw,34px);margin:0 0 26px}
@@ -186,12 +214,30 @@
   .find dd{margin:0}
   .find dd a{text-decoration:none;border-bottom:1px solid rgba(34,37,26,.32)}
   .find dd a:hover{border-bottom-color:currentColor}
+  @media (max-width:820px){
+    .find-grid{grid-template-columns:1fr}
+    .find img{aspect-ratio:3/2}
+  }
+  @media (max-width:430px){
+    .find dl{grid-template-columns:1fr;gap:3px 0}
+    .find dt{padding-top:12px}
+    .find dd{font-size:17px}
+  }
   .find .btn-main{background:var(--graphite);border-color:var(--graphite);color:var(--cream)}
   .find .btn-main:hover{background:#15171B}
 
   footer{background:var(--graphite);color:#A9A99C;font-size:13.5px;padding-block:32px}
   footer .wrap{display:flex;flex-direction:column;gap:9px;max-width:80ch}
   footer b{color:var(--cream);font-weight:500}
+
+  /* мобільні перевизначення — наприкінці, щоб не програвали пізнішим правилам */
+  @media (max-width:560px){
+    .f .hint,.drop,.counter,.submit-row p{font-size:14px}
+    input,select,textarea{font-size:16px}          /* 16px — iOS не масштабує сторінку при фокусі */
+    .btn{font-size:15.5px;padding:13px 22px}
+    section{padding-block:clamp(40px,9vw,60px)}
+    .works .sub,.steps .sub,.order .sub{font-size:15.5px}
+  }
 
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -213,6 +259,12 @@
       <a href="#cafe" class="hide-sm">Кав'ярня</a>
       <a href="#find" class="hide-sm">Контакти</a>
       <a class="tel" href="tel:+380952055297">095 205 52 97</a>
+      <a class="call" href="tel:+380952055297" aria-label="Подзвонити: 095 205 52 97">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.6 2.9h3l1.5 3.8-1.9 1.1a11 11 0 0 0 4.9 4.9l1.1-1.9 3.8 1.5v3a1.6 1.6 0 0 1-1.7 1.6A15.6 15.6 0 0 1 5 6.3 1.6 1.6 0 0 1 6.6 2.9z"/>
+        </svg>
+      </a>
       <a class="btn btn-main btn-sm" href="#order">Замовити торт</a>
     </nav>
   </div>
