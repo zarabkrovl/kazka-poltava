@@ -11,7 +11,8 @@
     --graphite:#22242A; --graphite-soft:#33363E;
     --cream:#EFE6CF; --paper:#FAF7EE; --paper-2:#F3EFE1;
     --wood:#B99767; --wood-deep:#8A6B42;
-    --ink:#23241E; --ink-soft:#4A4C41; --muted:#6C6F60;
+    --ink:#23241E; --ink-soft:#4A4C41; --muted:#6C6F60; --muted-strong:#575B4C;
+    --on-sage:#2F3522;   /* підписи на шавлієвому тлі: 5,6:1 */
     --line:#E0DCC8; --line-soft:#EBE7D7;
     --white:#FFFFFF;
     --err:#8C3A2B; --err-wash:#F7E9E4;
@@ -49,8 +50,9 @@
   .brand small{display:block;font-family:var(--body);font-size:11px;letter-spacing:.09em;
                text-transform:uppercase;color:var(--muted);margin-top:3px}
   .bar nav{margin-left:auto;display:flex;align-items:center;gap:22px}
-  .bar nav a{font-size:14.5px;text-decoration:none;color:var(--ink-soft)}
-  .bar nav a:hover{color:var(--sage-deep)}
+  /* :not(.btn) — інакше це правило перебиває колір тексту кнопки: у нього вища специфічність */
+  .bar nav a:not(.btn){font-size:14.5px;text-decoration:none;color:var(--ink-soft)}
+  .bar nav a:not(.btn):hover{color:var(--sage-deep)}
   .bar .tel{font-size:14.5px;text-decoration:none;white-space:nowrap}
   .bar .call{display:none;width:42px;height:42px;flex:none;border:1.5px solid var(--line);border-radius:50%;
              align-items:center;justify-content:center;color:var(--sage-deep)}
@@ -117,7 +119,7 @@
   /* ── смуга «як замовити» ── */
   .steps{background:var(--sage-wash)}
   .steps h2{font-size:clamp(25px,3vw,34px);margin:0 0 6px}
-  .steps .sub{color:var(--muted);margin:0 0 30px;max-width:56ch}
+  .steps .sub{color:var(--ink-soft);margin:0 0 30px;max-width:56ch}   /* --muted на шавлієвому тлі дає 4,42 */
   .steps ol{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;
             grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
   .steps li{counter-increment:st;display:flex;flex-direction:column;gap:9px;
@@ -151,7 +153,7 @@
   .choice input:checked + span{background:var(--sage-deep);border-color:var(--sage-deep);color:#FCFBF5}
   .choice input:focus-visible + span{outline:2.5px solid var(--sage-deep);outline-offset:3px}
   .drop{border:1.5px dashed var(--line);border-radius:12px;padding:18px;text-align:center;font-size:14.5px;
-        color:var(--muted);background:var(--paper-2);cursor:pointer}
+        color:var(--muted-strong);background:var(--paper-2);cursor:pointer}
   .drop.over{border-color:var(--sage-deep);color:var(--sage-deep);background:var(--sage-wash)}
   .counter{font-size:12.5px;color:var(--muted);text-align:right}
   .weight{font-size:13.5px;color:var(--sage-deep);min-height:1.2em}
@@ -210,7 +212,7 @@
   .find h2{font-size:clamp(25px,3vw,34px);margin:0 0 18px;color:#1D2015}
   .find img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--arch);box-shadow:var(--shadow-lift)}
   .find dl{margin:0 0 22px;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:16px}
-  .find dt{font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:#3F4430;padding-top:4px}
+  .find dt{font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--on-sage);padding-top:4px}
   .find dd{margin:0}
   .find dd a{text-decoration:none;border-bottom:1px solid rgba(34,37,26,.32)}
   .find dd a:hover{border-bottom-color:currentColor}
